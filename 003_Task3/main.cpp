@@ -6,14 +6,40 @@
 Напишите рекурсивную функцию, которая принимает число n типа int и число k — максимальную длину прыжка,
  а возвращает количество способов, которым кролик может доскакать до n-й ступеньки.
 Если максимальная длина прыжка не задана — считать её равной трём.
-
-Пример:
-Ввод: 3, 2
-Вывод: 3
-Пояснение: (1,2), (2,1), (1,1,1)
  */
+int Count (int a, int k = 3) {
+    int count = 0;
+    if (a < 0) {
+        return 0;
+    } else if (a == 1 || a == 0) {
+        return 1;
+    } else {
+        for (int i = k; i > 0; i--) {
+            count += Count(a - i, k);
+        }
+        return count;
+    }
+}
+
+bool Check(int a) {
+    return a > 0;
+}
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+    int n;
+    int k;
+
+    std::cout << "Input stair number and jump range:" << std::endl;
+    std::cin >> n >> k;
+
+    if (Check(n) && Check(k)) {
+        std::cout << Count(n, k) << std::endl;
+    } else if (Check(n) && !Check(k)){
+        std::cout << Count(n) << std::endl;
+    } else {
+        std::cout << "Wrong input" << std::endl;
+    }
+
     return 0;
 }
