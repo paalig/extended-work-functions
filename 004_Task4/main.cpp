@@ -3,15 +3,26 @@
 /*
 Напишите рекурсивную функцию, которая принимает большое число n типа long long и переменную ans, а возвращает void.
 После завершения работы функции в переменной ans должно оказаться количество чётных цифр в записи числа n.
-
-Пример:
-int ans;
-evendigits(9 223 372 036 854 775 806, ans);
-//ans == 10
-Пояснение: 9 223 372 036 854 775 806
  */
+void Count(long long int a, int ans) {
+    if (a != 0) {
+        if (a%2 == 0) {
+            ans++;
+        }
+        a /= 10;
+        Count(a, ans);
+    } else {
+        std::cout << ans << std::endl;
+    }
+}
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    long long int n;
+    int ans = 0;
+    std::cout << "Input number:" << std::endl;
+    std::cin >> n;
+
+    Count(n, ans);
+
     return 0;
 }
